@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Test Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+
+    <section id="start-screen" class="screen active">
+      <h1>Test Quiz</h1>
+      <p>Savollarga javob bering va natijangizni bilib oling.</p>
+      <p class="muted" id="question-count"></p>
+      <button id="start-btn" class="btn primary">Boshlash</button>
+    </section>
+
+    <section id="quiz-screen" class="screen">
+      <div class="progress"><div id="progress-bar"></div></div>
+      <p class="meta">
+        <span id="q-index"></span>
+        <span id="score-live"></span>
+      </p>
+      <h2 id="question-text"></h2>
+      <div id="options" class="options"></div>
+      <button id="next-btn" class="btn primary" disabled>Keyingi</button>
+    </section>
+
+    <section id="result-screen" class="screen">
+      <h1>Natija</h1>
+      <p id="result-text" class="result"></p>
+      <p id="result-message"></p>
+      <button id="restart-btn" class="btn primary">Qayta boshlash</button>
+    </section>
+
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

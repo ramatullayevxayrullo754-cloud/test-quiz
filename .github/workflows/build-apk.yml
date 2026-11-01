@@ -1,0 +1,47 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodni yuklash
+        uses: actions/checkout@v4
+
+      - name: Node.js o'rnatish
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Java o'rnatish
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Kutubxonalarni o'rnatish
+        run: npm install
+
+      - name: Android platformasini qo'shish (agar yo'q bo'lsa)
+        run: |
+          if [ ! -d android ]; then npx cap add android; fi
+
+      - name: Veb-fayllarni Android ga ko'chirish
+        run: npx cap sync android
+
+      - name: Debug APK yig'ish
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: APK ni yuklab olish uchun saqlash
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-quiz-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
