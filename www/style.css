@@ -154,3 +154,12 @@ p {
   background: #94a3b8;
   cursor: not-allowed;
 }
+
+.author {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--muted);
+  padding: 16px 0 24px;
+}
